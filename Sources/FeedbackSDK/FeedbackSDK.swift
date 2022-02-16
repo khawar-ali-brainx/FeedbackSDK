@@ -3,4 +3,8 @@ public struct FeedbackSDK {
 
     public init() {
     }
+    
+    public func sayHello() -> String {
+        return "Hello there"
+    }
 }
