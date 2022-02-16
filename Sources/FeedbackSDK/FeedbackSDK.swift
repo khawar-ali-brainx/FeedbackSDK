@@ -5,6 +5,6 @@ public struct FeedbackSDK {
     }
     
     public func sayHello() -> String {
-        return "Hello there"
+        return "Hello there, Khawar package is here."
     }
 }
