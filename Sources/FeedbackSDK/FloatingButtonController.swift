@@ -41,15 +41,17 @@ class FloatingButtonController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         window.windowLevel = UIWindow.Level(CGFloat.greatestFiniteMagnitude)
         window.isHidden = false
+        window.rootViewController = self
         window.floatingButtonController = self
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        window.makeKeyAndVisible()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
     }
     
-//    @objc
-//    func keyboardDidShow(note: NSNotification) {
-//        window.windowLevel = 0
-//        window.windowLevel = CGFloat.greatestFiniteMagnitude
-//    }
+    @objc
+    func keyboardDidShow(note: NSNotification) {
+        window.windowLevel = UIWindow.Level(0)
+        window.windowLevel = UIWindow.Level(CGFloat.greatestFiniteMagnitude)
+    }
     
     override func loadView() {
         let view = UIView()
@@ -68,8 +70,6 @@ class FloatingButtonController: UIViewController {
         self.view = view
         self.button = button
         window.button = button
-        
-        
         let panner = UIPanGestureRecognizer(target: self, action: #selector(panDidFire))
         button.addGestureRecognizer(panner)
     }
