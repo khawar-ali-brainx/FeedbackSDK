@@ -64,7 +64,7 @@ class FloatingButtonController: UIViewController {
         button.layer.shadowOpacity = 0.8
         button.layer.shadowOffset = CGSize.zero
         button.sizeToFit()
-        button.frame = CGRect(origin: CGPoint(x: (UIScreen.main.bounds.maxX - button.bounds.size - 8), y: UIScreen.main.bounds.maxY/2), size: button.bounds.size)
+        button.frame = CGRect(origin: CGPoint(x: (UIScreen.main.bounds.maxX - button.bounds.size.width - 8), y: UIScreen.main.bounds.maxY/2), size: button.bounds.size)
         button.autoresizingMask = []
         view.addSubview(button)
         self.view = view
