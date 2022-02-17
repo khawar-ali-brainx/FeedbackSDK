@@ -97,7 +97,12 @@ class FloatingButtonController: UIViewController {
     
     private var sockets: [CGPoint] {
         let buttonSize = button.bounds.size
-        let rect = view.bounds.insetBy(dx: 4 + buttonSize.width / 2, dy: 4 + buttonSize.height / 2)
+        var rect: CGRect!
+        if #available(iOS 11.0, *) {
+            rect = view.safeAreaLayoutGuide.layoutFrame
+        } else {
+            rect = view.bounds.insetBy(dx: 4 + buttonSize.width / 2, dy: 4 + buttonSize.height / 2)
+        }
         let sockets: [CGPoint] = [
             CGPoint(x: rect.maxX, y: rect.minY),
             CGPoint(x: rect.maxX, y: rect.maxY),
