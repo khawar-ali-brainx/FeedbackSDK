@@ -56,15 +56,11 @@ class FloatingButtonController: UIViewController {
     override func loadView() {
         let view = UIView()
         let button = UIButton(type: .custom)
-        button.setTitle("Floating", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = UIColor.red
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowRadius = 3
-        button.layer.shadowOpacity = 0.8
-        button.layer.shadowOffset = CGSize.zero
+        if let image = UIImage(packageResource: "feed", ofType: "png") {
+            button.setImage(image, for: .normal)
+        }
         button.sizeToFit()
-        button.frame = CGRect(origin: CGPoint(x: (UIScreen.main.bounds.maxX - button.bounds.size.width - 8), y: UIScreen.main.bounds.maxY/2), size: button.bounds.size)
+        button.frame = CGRect(origin: CGPoint(x: (UIScreen.main.bounds.maxX - button.bounds.size.width), y: UIScreen.main.bounds.maxY/2), size: button.bounds.size)
         button.autoresizingMask = []
         view.addSubview(button)
         self.view = view
@@ -79,7 +75,6 @@ class FloatingButtonController: UIViewController {
         let offset = panner.translation(in: view)
         panner.setTranslation(CGPoint.zero, in: view)
         var center = button.center
-        center.x += offset.x
         center.y += offset.y
         button.center = center
         
@@ -99,9 +94,9 @@ class FloatingButtonController: UIViewController {
         let buttonSize = button.bounds.size
         var rect: CGRect!
         if #available(iOS 11.0, *) {
-            rect = view.safeAreaLayoutGuide.layoutFrame.insetBy(dx: 4 + buttonSize.width / 2, dy: 4 + buttonSize.height / 2)
+            rect = view.safeAreaLayoutGuide.layoutFrame.insetBy(dx: -2 + buttonSize.width / 2, dy: 4 + buttonSize.height / 2)
         } else {
-            rect = view.bounds.insetBy(dx: 4 + buttonSize.width / 2, dy: 4 + buttonSize.height / 2)
+            rect = view.bounds.insetBy(dx: -2 + buttonSize.width / 2, dy: 4 + buttonSize.height / 2)
         }
         let sockets: [CGPoint] = [
             CGPoint(x: rect.maxX, y: rect.minY),
