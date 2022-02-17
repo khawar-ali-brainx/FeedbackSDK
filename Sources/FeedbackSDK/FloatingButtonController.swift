@@ -57,7 +57,7 @@ class FloatingButtonController: UIViewController {
         let view = UIView()
         let button = UIButton(type: .custom)
         button.setTitle("Floating", for: .normal)
-        button.setTitleColor(UIColor.green, for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.red
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowRadius = 3
