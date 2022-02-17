@@ -9,6 +9,7 @@ import UIKit
 
 private class FloatingButtonWindow: UIWindow {
     var button: UIButton?
+    var isFeedbackViewVisible: Bool = false
 
     var floatingButtonController: FloatingButtonController?
 
@@ -22,6 +23,7 @@ private class FloatingButtonWindow: UIWindow {
     }
 
     fileprivate override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        guard isFeedbackViewVisible == false else { return true }
         guard let button = button else { return false }
         let buttonPoint = convert(point, to: button)
         return button.point(inside: buttonPoint, with: event)
@@ -62,12 +64,24 @@ class FloatingButtonController: UIViewController {
         button.sizeToFit()
         button.frame = CGRect(origin: CGPoint(x: (UIScreen.main.bounds.maxX - button.bounds.size.width), y: UIScreen.main.bounds.maxY/2), size: button.bounds.size)
         button.autoresizingMask = []
+        button.addTarget(self, action: #selector(floatingButtonWasTapped), for: .touchUpInside)
         view.addSubview(button)
         self.view = view
         self.button = button
         window.button = button
         let panner = UIPanGestureRecognizer(target: self, action: #selector(panDidFire))
         button.addGestureRecognizer(panner)
+    }
+    
+    @objc
+    func floatingButtonWasTapped() {
+        window.isFeedbackViewVisible = true
+        let alert = UIAlertController(title: "Warning", message: "Don't do that!", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "cancel", style: .cancel) { _ in
+            self.window.isFeedbackViewVisible = false
+        }
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
     
     @objc
