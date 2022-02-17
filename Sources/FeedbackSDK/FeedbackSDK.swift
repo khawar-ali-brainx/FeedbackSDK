@@ -4,7 +4,7 @@ public struct FeedbackSDK {
     public init() {
     }
     
-    public func sayHello() -> String {
-        return "Hello there, Khawar package is here."
+    public func configure() {
+        _ = FloatingButtonController()
     }
 }
