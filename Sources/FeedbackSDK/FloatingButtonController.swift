@@ -99,7 +99,7 @@ class FloatingButtonController: UIViewController {
         let buttonSize = button.bounds.size
         var rect: CGRect!
         if #available(iOS 11.0, *) {
-            rect = view.safeAreaLayoutGuide.layoutFrame
+            rect = view.safeAreaLayoutGuide.layoutFrame.insetBy(dx: 4 + buttonSize.width / 2, dy: 4 + buttonSize.height / 2)
         } else {
             rect = view.bounds.insetBy(dx: 4 + buttonSize.width / 2, dy: 4 + buttonSize.height / 2)
         }
