@@ -41,7 +41,7 @@ class FloatingButtonController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         window.windowLevel = UIWindow.Level(CGFloat.greatestFiniteMagnitude)
         window.isHidden = false
-        window.rootViewController = self
+        window.floatingButtonController = self
 //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
     }
     
@@ -56,7 +56,7 @@ class FloatingButtonController: UIViewController {
         let button = UIButton(type: .custom)
         button.setTitle("Floating", for: .normal)
         button.setTitleColor(UIColor.green, for: .normal)
-        button.backgroundColor = UIColor.white
+        button.backgroundColor = UIColor.red
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowRadius = 3
         button.layer.shadowOpacity = 0.8
