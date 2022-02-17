@@ -4,7 +4,7 @@ public struct FeedbackSDK {
     public init() {
     }
     
-    public func configure() {
+    public static func configure() {
         _ = FloatingButtonController()
     }
 }
